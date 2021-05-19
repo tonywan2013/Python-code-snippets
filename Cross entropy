@@ -1,0 +1,28 @@
+# %%
+# plot of distributions
+from matplotlib import pyplot
+	
+# calculate cross entropy
+def cross_entropy(p, q):
+	return -sum([p[i]*log2(q[i]) for i in range(len(p))])
+
+# define distributions
+events = ['red', 'green', 'blue']
+p = [0.10, 0.40, 0.50]
+q = [0.80, 0.15, 0.05]
+print('P=%.3f Q=%.3f' % (sum(p), sum(q)))
+# plot first distribution
+pyplot.subplot(2,1,1)
+pyplot.bar(events, p)
+# plot second distribution
+pyplot.subplot(2,1,2)
+pyplot.bar(events, q)
+# show the plot
+pyplot.show()
+
+# calculate cross entropy H(P, Q)
+ce_pq = cross_entropy(p, q)
+print('H(P, Q): %.3f bits' % ce_pq)
+# calculate cross entropy H(Q, P)
+ce_qp = cross_entropy(q, p)
+print('H(Q, P): %.3f bits' % ce_qp)
